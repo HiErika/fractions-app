@@ -238,7 +238,7 @@ const HomeScreen = ({ setCurrentScreen, progress, playSound }) => {
       <div className="text-center py-8">
         <div className="flex items-center justify-center gap-3 mb-4">
           <Sparkles className="w-12 h-12 text-yellow-500 animate-pulse" />
-          <h1 className="text-5xl font-bold text-purple-600">Welcome Carter to Fraction Fun!</h1>
+          <h1 className="text-5xl font-bold text-purple-600">Welcome to Fraction Fun Carter!</h1>
           <Sparkles className="w-12 h-12 text-yellow-500 animate-pulse" />
         </div>
         <p className="text-xl text-gray-600">Learn fractions through fun games and lessons!</p>
