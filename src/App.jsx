@@ -1,42 +1,43 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Sparkles, Star, Trophy, BookOpen, Gamepad2, Award, ChevronRight, Check, X, Volume2, VolumeX } from 'lucide-react';
-                                                                                                                                                                                                                  
-  // Pizza Confetti Component                                                                                                                                                                                       
-  const PizzaConfetti = ({ count = 20 }) => {                                                                                                                                                                       
-    const confettiPieces = useMemo(() => {                                                                                                                                                                          
-      return Array.from({ length: count }, (_, i) => ({                                                                                                                                                             
-        id: i,                                                                                                                                                                                                      
-        left: Math.random() * 100,                                                                                                                                                                                  
-        delay: Math.random() * 0.5,                                                                                                                                                                                 
-        duration: 2 + Math.random() * 2,                                                                                                                                                                            
-        size: 24 + Math.random() * 24,                                                                                                                                                                              
-        rotation: Math.random() * 360,                                                                                                                                                                              
-        rotationSpeed: (Math.random() - 0.5) * 720,                                                                                                                                                                 
-      }));                                                                                                                                                                                                          
-    }, [count]);                                                                                                                                                                                                    
-                                                                                                                                                                                                                    
-    return (                                                                                                                                                                                                        
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-50">                                                                                                                                      
-        {confettiPieces.map((piece) => (                                                                                                                                                                            
-          <div                                                                                                                                                                                                      
-            key={piece.id}                                                                                                                                                                                          
-            className="absolute animate-confetti-fall"                                                                                                                                                              
-            style={{                                                                                                                                                                                                
-              left: `${piece.left}%`,                                                                                                                                                                               
-              top: '-50px',                                                                                                                                                                                         
-              fontSize: `${piece.size}px`,                                                                                                                                                                          
-              animationDelay: `${piece.delay}s`,                                                                                                                                                                    
-              animationDuration: `${piece.duration}s`,                                                                                                                                                              
-              '--rotation-start': `${piece.rotation}deg`,                                                                                                                                                           
-              '--rotation-end': `${piece.rotation + piece.rotationSpeed}deg`,                                                                                                                                       
-            }}                                                                                                                                                                                                      
-          >                                                                                                                                                                                                         
-            🍕                                                                                                                                                                                                      
-          </div>                                                                                                                                                                                                    
-        ))}                                                                                                                                                                                                         
-      </div>                                                                                                                                                                                                        
-    );                                                                                                                                                                                                              
-  };                               
+
+// Pizza Confetti Component
+const PizzaConfetti = ({ count = 20 }) => {
+  const confettiPieces = useMemo(() => {
+    return Array.from({ length: count }, (_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      delay: Math.random() * 0.5,
+      duration: 2 + Math.random() * 2,
+      size: 24 + Math.random() * 24,
+      rotation: Math.random() * 360,
+      rotationSpeed: (Math.random() - 0.5) * 720,
+    }));
+  }, [count]);
+
+  return (
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-50">
+      {confettiPieces.map((piece) => (
+        <div
+          key={piece.id}
+          className="absolute animate-confetti-fall"
+          style={{
+            left: `${piece.left}%`,
+            top: '-50px',
+            fontSize: `${piece.size}px`,
+            animationDelay: `${piece.delay}s`,
+            animationDuration: `${piece.duration}s`,
+            '--rotation-start': `${piece.rotation}deg`,
+            '--rotation-end': `${piece.rotation + piece.rotationSpeed}deg`,
+          }}
+        >
+          🍕
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const FractionsApp = () => {
   const [currentScreen, setCurrentScreen] = useState('home');
   const [progress, setProgress] = useState({
@@ -504,22 +505,23 @@ const LessonOne = ({ setCurrentScreen, completeLesson, addStars, playSound }) =>
       );
     }
 
-   if (currentStep.visual === "complete") {                                                                                                                                                                      
-        return (                                                                                                                                                                                                    
-          <>                                                                                                                                                                                                        
-            <PizzaConfetti count={25} />                                                                                                                                                                            
-            <div className="flex flex-col items-center justify-center p-12 space-y-6">                                                                                                                              
-              <Trophy className= "w-32 h-32 text-yellow-500 animate-bounce" />
-          <div className="flex gap-3">
-            <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" />
-            <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" style={{animationDelay: '0.2s'}} />
-            <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" style={{animationDelay: '0.4s'}} />
+    if (currentStep.visual === "complete") {
+      return (
+        <>
+          <PizzaConfetti count={25} />
+          <div className="flex flex-col items-center justify-center p-12 space-y-6">
+            <Trophy className="w-32 h-32 text-yellow-500 animate-bounce" />
+            <div className="flex gap-3">
+              <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" />
+              <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" style={{animationDelay: '0.2s'}} />
+              <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" style={{animationDelay: '0.4s'}} />
+            </div>
+            <p className="text-2xl font-bold text-purple-600">+3 Stars!</p>
           </div>
-           <p className="text-2xl font-bold text-purple-600">+3 Stars!</p>                                                                                                                                         
-            </div>                                                                                                                                                                                                  
-          </>                                                                                                                                                                                                       
-        );                                                                                                                                                                                                          
-      }    
+        </>
+      );
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -790,22 +792,24 @@ const LessonTwo = ({ setCurrentScreen, completeLesson, addStars, playSound }) =>
       );
     }
 
-    if (currentStep.visual === "complete") {                                                                                                                                                                      
-        return (                                                                                                                                                                                                    
-          <>                                                                                                                                                                                                        
-            <PizzaConfetti count={25} />                                                                                                                                                                            
-            <div className="flex flex-col items-center justify-center p-12 space-y-6">                                                                                                                              
-              <Trophy className="w-32 h-32 text-yellow-500 animate-bounce" />
-          <div className="flex gap-3">
-            <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" />
-            <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" style={{animationDelay: '0.2s'}} />
-            <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" style={{animationDelay: '0.4s'}} />
+    if (currentStep.visual === "complete") {
+      return (
+        <>
+          <PizzaConfetti count={25} />
+          <div className="flex flex-col items-center justify-center p-12 space-y-6">
+            <Trophy className="w-32 h-32 text-yellow-500 animate-bounce" />
+            <div className="flex gap-3">
+              <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" />
+              <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" style={{animationDelay: '0.2s'}} />
+              <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" style={{animationDelay: '0.4s'}} />
+            </div>
+            <p className="text-2xl font-bold text-purple-600">+3 Stars!</p>
           </div>
-           <p className="text-2xl font-bold text-purple-600">+3 Stars!</p>                                                                                                                                         
-            </div>                                                                                                                                                                                                  
-          </>                                                                                                                                                                                                       
-        );                                                                                                                                                                                                          
-      }    
+        </>
+      );
+    }
+  };
+
   return (
     <div className="space-y-6">
       <button
@@ -1033,22 +1037,23 @@ const LessonThree = ({ setCurrentScreen, completeLesson, addStars, playSound }) 
       );
     }
 
-    if (currentStep.visual === "complete") {                                                                                                                                                                      
-        return (                                                                                                                                                                                                    
-          <>                                                                                                                                                                                                        
-            <PizzaConfetti count={25} />                                                                                                                                                                            
-            <div className="flex flex-col items-center justify-center p-12 space-y-6">                                                                                                                              
-              <Trophy className="w-32 h-32 text-yellow-500 animate-bounce" />
-          <div className="flex gap-3">
-            <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" />
-            <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" style={{animationDelay: '0.2s'}} />
-            <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" style={{animationDelay: '0.4s'}} />
+    if (currentStep.visual === "complete") {
+      return (
+        <>
+          <PizzaConfetti count={25} />
+          <div className="flex flex-col items-center justify-center p-12 space-y-6">
+            <Trophy className="w-32 h-32 text-yellow-500 animate-bounce" />
+            <div className="flex gap-3">
+              <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" />
+              <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" style={{animationDelay: '0.2s'}} />
+              <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" style={{animationDelay: '0.4s'}} />
+            </div>
+            <p className="text-2xl font-bold text-purple-600">+3 Stars!</p>
           </div>
-          <p className="text-2xl font-bold text-purple-600">+3 Stars!</p>                                                                                                                                         
-            </div>                                                                                                                                                                                                  
-          </>                                                                                                                                                                                                       
-        );                                                                                                                                                                                                          
-      } 
+        </>
+      );
+    }
+  };
 
   const isInteractiveCorrect = step === 3 && (userAnswer === '2/3' || userAnswer === '2 / 3');
 
@@ -1159,6 +1164,52 @@ const LessonFour = ({ setCurrentScreen, completeLesson, addStars, playSound }) =
     }
   };
 
+  const renderPizzaFraction = (numerator, denominator, size = 'w-48 h-48') => {
+    const pieces = Array.from({ length: denominator }, (_, i) => i);
+
+    return (
+      <div className={`relative ${size}`}>
+        <div className="absolute inset-0 rounded-full overflow-hidden border-6 border-yellow-600 shadow-xl">
+          {pieces.map((piece) => {
+            const angle = (360 / denominator) * piece;
+            const isColored = piece < numerator;
+
+            return (
+              <div
+                key={piece}
+                className="absolute inset-0"
+                style={{
+                  clipPath: `polygon(50% 50%, ${50 + 50 * Math.sin((angle * Math.PI) / 180)}% ${50 - 50 * Math.cos((angle * Math.PI) / 180)}%, ${50 + 50 * Math.sin(((angle + 360/denominator) * Math.PI) / 180)}% ${50 - 50 * Math.cos(((angle + 360/denominator) * Math.PI) / 180)}%)`
+                }}
+              >
+                <div className={`w-full h-full ${
+                  isColored
+                    ? 'bg-gradient-to-br from-orange-400 to-red-500'
+                    : 'bg-gradient-to-br from-yellow-200 to-yellow-300'
+                }`}>
+                </div>
+              </div>
+            );
+          })}
+          {pieces.map((piece) => {
+            const angle = (360 / denominator) * piece;
+            return (
+              <div
+                key={`border-${piece}`}
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  clipPath: `polygon(50% 50%, ${50 + 50 * Math.sin((angle * Math.PI) / 180)}% ${50 - 50 * Math.cos((angle * Math.PI) / 180)}%, 50% 50%)`
+                }}
+              >
+                <div className="w-full h-full border-r-4 border-yellow-700"></div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  };
+
   const renderVisual = () => {
     const currentStep = steps[step];
 
@@ -1192,12 +1243,7 @@ const LessonFour = ({ setCurrentScreen, completeLesson, addStars, playSound }) =
         <div className="space-y-8">
           <div className="flex items-center justify-center gap-12">
             <div className="text-center">
-              <div className="w-48 h-48 border-8 border-purple-500 rounded-2xl overflow-hidden">
-                <div className="h-full flex">
-                  <div className="w-1/2 bg-gradient-to-br from-purple-400 to-purple-600"></div>
-                  <div className="w-1/2 bg-gray-200"></div>
-                </div>
-              </div>
+              {renderPizzaFraction(1, 2, 'w-48 h-48')}
               <p className="text-4xl font-bold text-purple-600 mt-4">1/2</p>
             </div>
             <div className="text-6xl font-bold text-gray-400">=</div>
@@ -1217,14 +1263,7 @@ const LessonFour = ({ setCurrentScreen, completeLesson, addStars, playSound }) =
         <div className="space-y-8">
           <div className="flex items-center justify-center gap-12">
             <div className="text-center">
-              <div className="w-48 h-48 border-8 border-purple-500 rounded-2xl overflow-hidden">
-                <div className="h-full flex flex-wrap">
-                  <div className="w-1/2 h-1/2 bg-gradient-to-br from-purple-400 to-purple-600"></div>
-                  <div className="w-1/2 h-1/2 bg-gray-200"></div>
-                  <div className="w-1/2 h-1/2 bg-gray-200"></div>
-                  <div className="w-1/2 h-1/2 bg-gray-200"></div>
-                </div>
-              </div>
+              {renderPizzaFraction(1, 4, 'w-48 h-48')}
               <p className="text-4xl font-bold text-purple-600 mt-4">1/4</p>
             </div>
             <div className="text-6xl font-bold text-gray-400">=</div>
@@ -1241,19 +1280,12 @@ const LessonFour = ({ setCurrentScreen, completeLesson, addStars, playSound }) =
 
     if (currentStep.visual === "interactive") {
       const isCorrect = userAnswer === '0.75' || userAnswer === '.75';
-      
+
       return (
         <div className="space-y-8">
           <div className="flex items-center justify-center gap-12">
             <div className="text-center">
-              <div className="w-52 h-52 border-8 border-purple-500 rounded-2xl overflow-hidden">
-                <div className="h-full flex flex-wrap">
-                  <div className="w-1/2 h-1/2 bg-gradient-to-br from-orange-400 to-red-500"></div>
-                  <div className="w-1/2 h-1/2 bg-gradient-to-br from-orange-400 to-red-500"></div>
-                  <div className="w-1/2 h-1/2 bg-gradient-to-br from-orange-400 to-red-500"></div>
-                  <div className="w-1/2 h-1/2 bg-gray-200"></div>
-                </div>
-              </div>
+              {renderPizzaFraction(3, 4, 'w-52 h-52')}
               <p className="text-5xl font-bold text-purple-600 mt-4">3/4</p>
             </div>
             <div className="text-6xl font-bold text-gray-400">=</div>
@@ -1272,13 +1304,13 @@ const LessonFour = ({ setCurrentScreen, completeLesson, addStars, playSound }) =
               />
             </div>
           </div>
-          
+
           <div className="bg-blue-100 rounded-2xl p-4 max-w-md mx-auto">
             <p className="text-lg text-center text-blue-800">
               Hint: 1/4 = 0.25, so 3/4 = 0.25 + 0.25 + 0.25 = ?
             </p>
           </div>
-          
+
           {isCorrect && (
             <div className="bg-green-100 rounded-2xl p-6 max-w-2xl mx-auto animate-fadeIn">
               <p className="text-2xl text-center text-green-800 font-bold">
@@ -1286,7 +1318,7 @@ const LessonFour = ({ setCurrentScreen, completeLesson, addStars, playSound }) =
               </p>
             </div>
           )}
-          
+
           {userAnswer && !isCorrect && (
             <div className="bg-orange-100 rounded-2xl p-6 max-w-2xl mx-auto animate-fadeIn">
               <p className="text-2xl text-center text-orange-800 font-bold">
@@ -1298,22 +1330,23 @@ const LessonFour = ({ setCurrentScreen, completeLesson, addStars, playSound }) =
       );
     }
 
-    if (currentStep.visual === "complete") {                                                                                                                                                                      
-        return (                                                                                                                                                                                                    
-          <>                                                                                                                                                                                                        
-            <PizzaConfetti count={25} />                                                                                                                                                                            
-            <div className="flex flex-col items-center justify-center p-12 space-y-6">                                                                                                                              
-              <Trophy className="w-32 h-32 text-yellow-500 animate-bounce" />
-          <div className="flex gap-3">
-            <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" />
-            <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" style={{animationDelay: '0.2s'}} />
-            <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" style={{animationDelay: '0.4s'}} />
+    if (currentStep.visual === "complete") {
+      return (
+        <>
+          <PizzaConfetti count={25} />
+          <div className="flex flex-col items-center justify-center p-12 space-y-6">
+            <Trophy className="w-32 h-32 text-yellow-500 animate-bounce" />
+            <div className="flex gap-3">
+              <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" />
+              <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" style={{animationDelay: '0.2s'}} />
+              <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" style={{animationDelay: '0.4s'}} />
+            </div>
+            <p className="text-2xl font-bold text-purple-600">+3 Stars!</p>
           </div>
-           <p className="text-2xl font-bold text-purple-600">+3 Stars!</p>                                                                                                                                         
-            </div>                                                                                                                                                                                                  
-          </>                                                                                                                                                                                                       
-        );                                                                                                                                                                                                          
-      } 
+        </>
+      );
+    }
+  };
 
   const isInteractiveCorrect = step === 4 && (userAnswer === '0.75' || userAnswer === '.75');
 
@@ -1603,6 +1636,7 @@ const PizzaGame = ({ setCurrentScreen, incrementGamesPlayed, addStars, playSound
   if (feedback === 'complete') {
     return (
       <div className="space-y-6">
+        <PizzaConfetti count={30} />
         <div className="bg-white rounded-3xl shadow-2xl p-12 text-center border-4 border-green-300">
           <Trophy className="w-32 h-32 text-yellow-500 mx-auto mb-6 animate-bounce" />
           <h2 className="text-5xl font-bold text-green-600 mb-4">Awesome Job!</h2>
