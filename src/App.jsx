@@ -1,6 +1,42 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Sparkles, Star, Trophy, BookOpen, Gamepad2, Award, ChevronRight, Check, X, Volume2, VolumeX } from 'lucide-react';
-
+                                                                                                                                                                                                                  
+  // Pizza Confetti Component                                                                                                                                                                                       
+  const PizzaConfetti = ({ count = 20 }) => {                                                                                                                                                                       
+    const confettiPieces = useMemo(() => {                                                                                                                                                                          
+      return Array.from({ length: count }, (_, i) => ({                                                                                                                                                             
+        id: i,                                                                                                                                                                                                      
+        left: Math.random() * 100,                                                                                                                                                                                  
+        delay: Math.random() * 0.5,                                                                                                                                                                                 
+        duration: 2 + Math.random() * 2,                                                                                                                                                                            
+        size: 24 + Math.random() * 24,                                                                                                                                                                              
+        rotation: Math.random() * 360,                                                                                                                                                                              
+        rotationSpeed: (Math.random() - 0.5) * 720,                                                                                                                                                                 
+      }));                                                                                                                                                                                                          
+    }, [count]);                                                                                                                                                                                                    
+                                                                                                                                                                                                                    
+    return (                                                                                                                                                                                                        
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-50">                                                                                                                                      
+        {confettiPieces.map((piece) => (                                                                                                                                                                            
+          <div                                                                                                                                                                                                      
+            key={piece.id}                                                                                                                                                                                          
+            className="absolute animate-confetti-fall"                                                                                                                                                              
+            style={{                                                                                                                                                                                                
+              left: `${piece.left}%`,                                                                                                                                                                               
+              top: '-50px',                                                                                                                                                                                         
+              fontSize: `${piece.size}px`,                                                                                                                                                                          
+              animationDelay: `${piece.delay}s`,                                                                                                                                                                    
+              animationDuration: `${piece.duration}s`,                                                                                                                                                              
+              '--rotation-start': `${piece.rotation}deg`,                                                                                                                                                           
+              '--rotation-end': `${piece.rotation + piece.rotationSpeed}deg`,                                                                                                                                       
+            }}                                                                                                                                                                                                      
+          >                                                                                                                                                                                                         
+            🍕                                                                                                                                                                                                      
+          </div>                                                                                                                                                                                                    
+        ))}                                                                                                                                                                                                         
+      </div>                                                                                                                                                                                                        
+    );                                                                                                                                                                                                              
+  };                               
 const FractionsApp = () => {
   const [currentScreen, setCurrentScreen] = useState('home');
   const [progress, setProgress] = useState({
