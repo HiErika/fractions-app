@@ -504,20 +504,22 @@ const LessonOne = ({ setCurrentScreen, completeLesson, addStars, playSound }) =>
       );
     }
 
-    if (currentStep.visual === "complete") {
-      return (
-        <div className="flex flex-col items-center justify-center p-12 space-y-6">
-          <Trophy className="w-32 h-32 text-yellow-500 animate-bounce" />
+   if (currentStep.visual === "complete") {                                                                                                                                                                      
+        return (                                                                                                                                                                                                    
+          <>                                                                                                                                                                                                        
+            <PizzaConfetti count={25} />                                                                                                                                                                            
+            <div className="flex flex-col items-center justify-center p-12 space-y-6">                                                                                                                              
+              <Trophy className= "w-32 h-32 text-yellow-500 animate-bounce" />
           <div className="flex gap-3">
             <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" />
             <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" style={{animationDelay: '0.2s'}} />
             <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" style={{animationDelay: '0.4s'}} />
           </div>
-          <p className="text-2xl font-bold text-purple-600">+3 Stars!</p>
-        </div>
-      );
-    }
-  };
+           <p className="text-2xl font-bold text-purple-600">+3 Stars!</p>                                                                                                                                         
+            </div>                                                                                                                                                                                                  
+          </>                                                                                                                                                                                                       
+        );                                                                                                                                                                                                          
+      }    
 
   return (
     <div className="space-y-6">
@@ -788,21 +790,22 @@ const LessonTwo = ({ setCurrentScreen, completeLesson, addStars, playSound }) =>
       );
     }
 
-    if (currentStep.visual === "complete") {
-      return (
-        <div className="flex flex-col items-center justify-center p-12 space-y-6">
-          <Trophy className="w-32 h-32 text-yellow-500 animate-bounce" />
+    if (currentStep.visual === "complete") {                                                                                                                                                                      
+        return (                                                                                                                                                                                                    
+          <>                                                                                                                                                                                                        
+            <PizzaConfetti count={25} />                                                                                                                                                                            
+            <div className="flex flex-col items-center justify-center p-12 space-y-6">                                                                                                                              
+              <Trophy className="w-32 h-32 text-yellow-500 animate-bounce" />
           <div className="flex gap-3">
             <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" />
             <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" style={{animationDelay: '0.2s'}} />
             <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" style={{animationDelay: '0.4s'}} />
           </div>
-          <p className="text-2xl font-bold text-purple-600">+3 Stars!</p>
-        </div>
-      );
-    }
-  };
-
+           <p className="text-2xl font-bold text-purple-600">+3 Stars!</p>                                                                                                                                         
+            </div>                                                                                                                                                                                                  
+          </>                                                                                                                                                                                                       
+        );                                                                                                                                                                                                          
+      }    
   return (
     <div className="space-y-6">
       <button
@@ -1030,20 +1033,22 @@ const LessonThree = ({ setCurrentScreen, completeLesson, addStars, playSound }) 
       );
     }
 
-    if (currentStep.visual === "complete") {
-      return (
-        <div className="flex flex-col items-center justify-center p-12 space-y-6">
-          <Trophy className="w-32 h-32 text-yellow-500 animate-bounce" />
+    if (currentStep.visual === "complete") {                                                                                                                                                                      
+        return (                                                                                                                                                                                                    
+          <>                                                                                                                                                                                                        
+            <PizzaConfetti count={25} />                                                                                                                                                                            
+            <div className="flex flex-col items-center justify-center p-12 space-y-6">                                                                                                                              
+              <Trophy className="w-32 h-32 text-yellow-500 animate-bounce" />
           <div className="flex gap-3">
             <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" />
             <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" style={{animationDelay: '0.2s'}} />
             <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" style={{animationDelay: '0.4s'}} />
           </div>
-          <p className="text-2xl font-bold text-purple-600">+3 Stars!</p>
-        </div>
-      );
-    }
-  };
+          <p className="text-2xl font-bold text-purple-600">+3 Stars!</p>                                                                                                                                         
+            </div>                                                                                                                                                                                                  
+          </>                                                                                                                                                                                                       
+        );                                                                                                                                                                                                          
+      } 
 
   const isInteractiveCorrect = step === 3 && (userAnswer === '2/3' || userAnswer === '2 / 3');
 
@@ -1293,20 +1298,22 @@ const LessonFour = ({ setCurrentScreen, completeLesson, addStars, playSound }) =
       );
     }
 
-    if (currentStep.visual === "complete") {
-      return (
-        <div className="flex flex-col items-center justify-center p-12 space-y-6">
-          <Trophy className="w-32 h-32 text-yellow-500 animate-bounce" />
+    if (currentStep.visual === "complete") {                                                                                                                                                                      
+        return (                                                                                                                                                                                                    
+          <>                                                                                                                                                                                                        
+            <PizzaConfetti count={25} />                                                                                                                                                                            
+            <div className="flex flex-col items-center justify-center p-12 space-y-6">                                                                                                                              
+              <Trophy className="w-32 h-32 text-yellow-500 animate-bounce" />
           <div className="flex gap-3">
             <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" />
             <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" style={{animationDelay: '0.2s'}} />
             <Star className="w-16 h-16 text-yellow-400 fill-yellow-400 animate-pulse" style={{animationDelay: '0.4s'}} />
           </div>
-          <p className="text-2xl font-bold text-purple-600">+3 Stars!</p>
-        </div>
-      );
-    }
-  };
+           <p className="text-2xl font-bold text-purple-600">+3 Stars!</p>                                                                                                                                         
+            </div>                                                                                                                                                                                                  
+          </>                                                                                                                                                                                                       
+        );                                                                                                                                                                                                          
+      } 
 
   const isInteractiveCorrect = step === 4 && (userAnswer === '0.75' || userAnswer === '.75');
 
