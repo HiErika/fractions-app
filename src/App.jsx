@@ -2199,7 +2199,7 @@ const AddingFractionsGame = ({ setCurrentScreen, incrementGamesPlayed, addStars,
   const [questionsAnswered, setQuestionsAnswered] = useState(0);
 
   const generateQuestion = () => {
-    const denominator = [2, 3, 4, 6][Math.floor(Math.random() * 4)];
+    const denominator = [3, 4, 6][Math.floor(Math.random() * 3)];
     const num1 = Math.floor(Math.random() * (denominator - 1)) + 1;
     const maxNum2 = denominator - num1;
     const num2 = Math.floor(Math.random() * maxNum2) + 1;
