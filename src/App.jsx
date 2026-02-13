@@ -40,6 +40,7 @@ const PizzaConfetti = ({ count = 20 }) => {
 
 const FractionsApp = () => {
   const [currentScreen, setCurrentScreen] = useState('home');
+  const [userName, setUserName] = useState('');
   const [progress, setProgress] = useState({
     lessonsCompleted: [],
     gamesPlayed: 0,
@@ -111,6 +112,10 @@ const FractionsApp = () => {
 
   // Load progress from localStorage on mount
   useEffect(() => {
+    const savedName = localStorage.getItem('userName');
+    if (savedName) {
+      setUserName(savedName);
+    }
     const saved = localStorage.getItem('fractionsProgress');
     if (saved) {
       setProgress(JSON.parse(saved));
@@ -172,11 +177,21 @@ const FractionsApp = () => {
           </button>
         </div>
 
-        {currentScreen === 'home' && (
-          <HomeScreen 
-            setCurrentScreen={setCurrentScreen} 
+        {!userName && (
+          <NameEntryScreen
+            setUserName={(name) => {
+              setUserName(name);
+              localStorage.setItem('userName', name);
+            }}
+            playSound={playSound}
+          />
+        )}
+        {userName && currentScreen === 'home' && (
+          <HomeScreen
+            setCurrentScreen={setCurrentScreen}
             progress={progress}
             playSound={playSound}
+            userName={userName}
           />
         )}
         {currentScreen === 'lesson1' && (
@@ -224,7 +239,51 @@ const FractionsApp = () => {
   );
 };
 
-const HomeScreen = ({ setCurrentScreen, progress, playSound }) => {
+const NameEntryScreen = ({ setUserName, playSound }) => {
+  const [name, setName] = useState('');
+
+  const handleSubmit = () => {
+    if (name.trim()) {
+      playSound('complete');
+      setUserName(name.trim());
+    }
+  };
+
+  return (
+    <div className="flex items-center justify-center min-h-[80vh] animate-fadeIn">
+      <div className="bg-white rounded-3xl shadow-2xl p-12 border-4 border-purple-300 text-center max-w-lg w-full">
+        <div className="text-8xl mb-6">🍕</div>
+        <h1 className="text-4xl font-bold text-purple-600 mb-3">Fraction Fun!</h1>
+        <p className="text-xl text-gray-600 mb-8">Learn fractions through fun games and lessons!</p>
+        <div className="space-y-6">
+          <div>
+            <label className="text-lg font-semibold text-gray-700 block mb-2">What's your name?</label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
+              placeholder="Enter your name"
+              className="w-full text-2xl font-bold text-center border-4 border-purple-300 rounded-2xl px-6 py-4 focus:border-purple-500 focus:outline-none"
+              autoFocus
+            />
+          </div>
+          <button
+            onClick={handleSubmit}
+            disabled={!name.trim()}
+            className={`w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-12 py-4 rounded-full text-2xl font-bold shadow-lg transform transition flex items-center justify-center gap-3 ${
+              name.trim() ? 'hover:shadow-xl hover:scale-105' : 'opacity-50 cursor-not-allowed'
+            }`}
+          >
+            Let's Go!
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const HomeScreen = ({ setCurrentScreen, progress, playSound, userName }) => {
   const lessons = [
     { id: 'lesson1', title: 'What are Fractions?', icon: '🍕', color: 'blue' },
     { id: 'lesson2', title: 'Comparing Fractions', icon: '⚖️', color: 'green' },
@@ -238,7 +297,7 @@ const HomeScreen = ({ setCurrentScreen, progress, playSound }) => {
       <div className="text-center py-8">
         <div className="flex items-center justify-center gap-3 mb-4">
           <Sparkles className="w-12 h-12 text-yellow-500 animate-pulse" />
-          <h1 className="text-5xl font-bold text-purple-600">Fraction Fun!</h1>
+          <h1 className="text-5xl font-bold text-purple-600">{userName}, get ready to have fun with Fractions!</h1>
           <Sparkles className="w-12 h-12 text-yellow-500 animate-pulse" />
         </div>
         <p className="text-xl text-gray-600">Learn fractions through fun games and lessons!</p>
